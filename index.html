@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>News Daily</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
-
 <body class="bg-light">
-    <header class="py-3">
+    <header class="py-2">
         <section class="d-none d-md-block">
             <div class="container">
-                <nav class="navbar navbar-expand-lg">
+                <nav class="navbar navbar-expand-lg pb-0">
                     <div class="container-fluid">
                         <a class="navbar-brand fs-4 fw-normal text-muted text-uppercase" href="#"><span class="text-primary">News</span> Daily</a>
-                        <div class="collapse navbar-collapse text-end py-3 py-md-0 d-none d-md-block" id="topNavbar">
+                        <div class="collapse navbar-collapse text-end d-none d-md-block" id="topNavbar">
                             <ul class="navbar-nav mx-auto me-0">
                                 <li class="nav-item">
                                     <a class="nav-link active" aria-current="page" href="#">News</a>
@@ -33,25 +30,22 @@
                 <hr class="text-muted">
             </div>
         </section>
-        <section class="">
+        <section class="pt-3 pt-md-0">
             <div class="container">
-                <nav class="navbar navbar-expand-lg">
+                <nav class="navbar navbar-expand-lg pt-0">
                     <div class="container-fluid">
                         <a class="navbar-brand fs-4 fw-normal text-muted text-uppercase d-block d-md-none" href="#"><span class="text-primary">News</span> Daily</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topMenu"
-                        aria-controls="topMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu"
+                        aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse text-end py-3 py-md-0" id="topMenu">
-                            <ul class="navbar-nav mx-auto">
+                        <div class="collapse navbar-collapse text-end py-3 py-md-0" id="mainMenu">
+                            <ul class="navbar-nav mx-auto" id="mainMenuUl">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">News</a>
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Blogs</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Blogs</a>
+                                    <a class="nav-link" href="#"></a>
                                 </li>
                             </ul>
                         </div>
@@ -60,11 +54,27 @@
             </div>
         </section>
     </header>
-    <main>
-
+    <main class="">
+        <section>
+            <div class="container">
+                <div class="row rounded-3 py-4 text-center" id="preloaderSection">
+                    <div class="col-md-12">
+                        <img src="assets/images/preloader.gif" class="preloader-img" alt="preloader image">
+                    </div>
+                </div>
+                <div class="row rounded-3 py-4 my-3 text-center" id="noDataFoundSection">
+                    <div class="col-md-12">
+                        <h2 class="text-danger error-message-heading">404 Error</h2>
+                        <p class="text-muted">No data were found by the country you searched!!! Please search again <br>by a valid country nam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    <footer>
-
+    <footer class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <p class="text-muted mb-0">Copyright @ 2022. All Right Reserved.</p>
+        </div>
     </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
