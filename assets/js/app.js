@@ -24,6 +24,17 @@ const displayAllCategories = categoriesData => {
 loadAllCategories();
 
 
+// Change active categories nav item...
+document.getElementById("mainMenuUl").addEventListener('click', (event) => {
+    const activeCategory = document.querySelector('#mainMenuUl .active');
+    const newActiveCategory = event.target;
+    if (newActiveCategory.classList.contains('nav-link') && activeCategory !== event.target) {
+        activeCategory.classList.remove('active');
+        newActiveCategory.classList.add('active');
+    }
+});
+
+
 const getAllNewsByCategoryId = async(categoryId, categoryName = '') => {
     websitePreloader(true);
 
@@ -39,17 +50,6 @@ const getAllNewsByCategoryId = async(categoryId, categoryName = '') => {
     }
 
 }
-
-// Change active nav item...
-document.getElementById("mainMenuUl").addEventListener('click', (event) => {
-    const activeCategory = document.querySelector('#mainMenuUl .active');
-    const newActiveCategory = event.target;
-    if (newActiveCategory.classList.contains('nav-link') && activeCategory !== event.target) {
-        activeCategory.classList.remove('active');
-        newActiveCategory.classList.add('active');
-    }
-});
-
 
 const displayAllNews = (allNewsData, categoryName) => {
     const newsCards = document.getElementById("newsCards");
@@ -76,6 +76,9 @@ const displayAllNews = (allNewsData, categoryName) => {
 
         // News rating...
         const newsRatingBadge = newsData.rating.badge;
+
+        // Here now no review number providing as argument because in this API all review number is same (4.5)...
+        // const newsRatingStars = getNewsRatingStars(newsData.rating.number);
         const newsRatingStars = getNewsRatingStars();
 
         const newNewsCard = document.createElement('div');
@@ -109,7 +112,7 @@ const displayAllNews = (allNewsData, categoryName) => {
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-6">
-                                    <div class="d-flex justify-content-center align-items-center" title="News Rating">
+                                    <div class="d-flex justify-content-center align-items-center" title="News Rating: ${newsRatingBadge}">
                                         ${newsRatingStars}
                                     </div>
                                 </div>
@@ -161,10 +164,10 @@ const getNewsShortDescription = description => {
     return newsShortDescription;
 }
 
-const getNewsRatingStars = () => {
+const getNewsRatingStars = (rating = Math.floor(Math.random() * (5.00 -3.00 + 3.7)) + 1.5) => {
     // Now taking random rating because in API all rating is 4.5...
-    let rating = Math.floor(Math.random() * (5.00 -3.00 + 3.7)) + 1.5;
-    
+    console.log(rating)
+
     // Make rating with in rating range(0-5)...
     rating < 0 ? rating = 0 : rating;
     rating > 5 ? rating = 5 : rating;
