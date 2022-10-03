@@ -16,7 +16,7 @@ const displayAllCategories = categoriesData => {
     newsCategories.forEach(newsCategory => {
         const newNavItem = document.createElement('li');
         newNavItem.classList.add('nav-item');
-        newNavItem.innerHTML = `<a class="nav-link" onclick="getAllNewsByCategoryId('${newsCategory.category_id}', '${newsCategory.category_name}')">${newsCategory.category_name}</a>`;
+        newNavItem.innerHTML = `<a class="nav-link" id="category${newsCategory.category_id}" onclick="getAllNewsByCategoryId('${newsCategory.category_id}', '${newsCategory.category_name}')">${newsCategory.category_name}</a>`;
         mainMenuUl.appendChild(newNavItem);
     })
 }
@@ -40,10 +40,21 @@ const getAllNewsByCategoryId = async(categoryId, categoryName = '') => {
 
 }
 
+// Change active nav item...
+document.getElementById("mainMenuUl").addEventListener('click', (event) => {
+    const activeCategory = document.querySelector('#mainMenuUl .active');
+    const newActiveCategory = event.target;
+    if (newActiveCategory.classList.contains('nav-link') && activeCategory !== event.target) {
+        activeCategory.classList.remove('active');
+        newActiveCategory.classList.add('active');
+    }
+});
+
+
 const displayAllNews = (allNewsData, categoryName) => {
     const newsCards = document.getElementById("newsCards");
     allNewsData.forEach(newsData => {
-        console.log(newsData);
+        // console.log(newsData);
 
         const newsThumbnailURL = newsData.thumbnail_url;
         const newsTitle = newsData.title;
@@ -55,7 +66,7 @@ const displayAllNews = (allNewsData, categoryName) => {
             }
         }
         const newsShortDescription = `${newsData.details.slice(0, shortDescriptionLineBreak)}<br><br>${newsData.details.slice(shortDescriptionLineBreak, 400)}...`;
-        console.log(newsShortDescription)
+        // console.log(newsShortDescription)
 
         const newNewsCard = document.createElement('div');
         newNewsCard.classList.add('col');
