@@ -37,6 +37,7 @@ document.getElementById("mainMenuUl").addEventListener('click', (event) => {
 
 const getAllNewsByCategoryId = async(categoryId, categoryName = '') => {
     websitePreloader(true);
+    document.getElementById("newsCards").innerHTML = '';
 
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`);
     const data = await response.json();
@@ -84,41 +85,41 @@ const displayAllNews = (allNewsData, categoryName) => {
         const newNewsCard = document.createElement('div');
         newNewsCard.classList.add('col');
         newNewsCard.innerHTML = 
-            `<div class="card h-100 shadow-sm p-3">
+            `<div class="card h-100 shadow-sm py-3 px-0 px-md-3">
                 <div class="row align-items-center">
                     <div class="col-md-3 text-center">
-                        <a href="#"><img src="${newsThumbnailURL}" id="newsThumbnail" class="img-fluid" alt="${newsTitle} Image"></a>
+                        <a href="#" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal"><img src="${newsThumbnailURL}" id="newsThumbnail" class="img-fluid" alt="${newsTitle} Image"></a>
                     </div>
                     <div class="col-md-9 text-center text-md-start">
                         <div class="card-body">
-                            <a href="#"><h5 class="card-title" id="newsTitle">${newsTitle}</h5></a>
-                            <p class="card-text text-muted" id="newsShortDescription">${newsShortDescription}</p>
+                            <a href="#" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal"><h5 class="card-title text-start" id="newsTitle">${newsTitle}</h5></a>
+                            <p class="card-text text-muted text-start" id="newsShortDescription">${newsShortDescription}</p>
                             <div class="row justify-content-between align-items-center">
-                                <div class="col-md-3 col-6">
-                                    <div class="row align-items-center">
-                                        <div class="col-4">
+                                <div class="col-md-3 col-6 mb-2 mb-md-0">
+                                    <div class="row align-items-center text-start">
+                                        <div class="col-3 col-md-4">
                                             <img class="img-fluid rounded-circle" id="authorImage" src="${newsAuthorThumbnailURL}" alt="Author ${newsAuthorName} Image">
                                         </div>
-                                        <div class="col-8">
+                                        <div class="col-9 col-md-8">
                                             <h6 class="fw-normal mb-0 text-capitalize" id="authorName">${newsAuthorName}</h6>
                                             <p class="text-muted mb-0" id="publishedDate"><small>${newsPublicationDate}</small></p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-6">
-                                    <div class="d-flex justify-content-center align-items-center">
+                                <div class="col-md-3 col-6 mb-2 mb-md-0">
+                                    <div class="d-flex justify-content-end justify-content-md-center align-items-center">
                                         <i class="fa-solid fa-eye text-muted"></i>
-                                        <p class="mb-0 ms-2 text-muted" id="newsTotalViews">343 Views</p>
+                                        <p class="mb-0 ms-2 text-muted" id="newsTotalViews">${newsTotalViews} Views</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-6">
-                                    <div class="d-flex justify-content-center align-items-center" title="News Rating: ${newsRatingBadge}">
+                                    <div class="d-flex justify-content-start justify-content-md-center align-items-center" title="News Rating: ${newsRatingBadge}">
                                         ${newsRatingStars}
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-6 text-center">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <a class="learn-more-anchor">
+                                    <div class="d-flex justify-content-end justify-content-md-center align-items-center">
+                                        <a class="learn-more-anchor" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">
                                             <span class="text-muted me-2">Learn More</span>
                                             <i class="fa-solid fa-arrow-right fs-5 text-primary"></i>
                                         </a>
@@ -137,6 +138,10 @@ const displayAllNews = (allNewsData, categoryName) => {
     const newsFoundMessage = `${allNewsData.length} News found by the category of ${categoryName}.`;
     newsDataFoundMessage(true, newsFoundMessage);
     websitePreloader(false);
+}
+
+const getNewsDetailedInformationById = newsId => {
+    console.log("Hello from news detailed information");
 }
 
 const getPublicationDate = (providedDate) => {
@@ -166,7 +171,6 @@ const getNewsShortDescription = description => {
 
 const getNewsRatingStars = (rating = Math.floor(Math.random() * (5.00 -3.00 + 3.7)) + 1.5) => {
     // Now taking random rating because in API all rating is 4.5...
-    console.log(rating)
 
     // Make rating with in rating range(0-5)...
     rating < 0 ? rating = 0 : rating;
