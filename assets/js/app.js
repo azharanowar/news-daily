@@ -61,23 +61,13 @@ const displayAllNews = (allNewsData, categoryName) => {
         const newsId = newsData._id;
 
         // News short description...
-        let shortDescriptionLineBreak = 150;
-        for (i = 150; i <= 165; i++ ) {
-            if (newsData.details.slice(i, i+1) === ' ') {
-                shortDescriptionLineBreak = i;
-                break;
-            }
-        }
-        const newsShortDescription = `${newsData.details.slice(0, shortDescriptionLineBreak)}<br><br>${newsData.details.slice(shortDescriptionLineBreak, 400)}...`;
+        const newsShortDescription = getNewsShortDescription(newsData.details);
 
         // News author information...
         const newsAuthorThumbnailURL = newsData.author.img;
         const newsAuthorName = newsData.author.name;
 
         // News publication date...
-        // let newsPublicationDate = new Date(newsData.author.published_date);
-        // newsPublicationDate = `${newsPublicationDate.getDay, newsPublicationDate.getMonth}`
-
         const newsPublicationDate = getPublicationDate(newsData.author.published_date);
 
         
@@ -160,6 +150,18 @@ const getPublicationDate = (providedDate) => {
 
     const formattedPublicationDate = dd + '/' + mm + '/' + yyyy;
     return formattedPublicationDate;
+}
+
+const getNewsShortDescription = description => {
+    let shortDescriptionLineBreak = 150;
+    for (i = 150; i <= 165; i++ ) {
+        if (description.slice(i, i+1) === ' ') {
+            shortDescriptionLineBreak = i;
+            break;
+        }
+    }
+    const newsShortDescription = `${description.slice(0, shortDescriptionLineBreak)}<br><br>${description.slice(shortDescriptionLineBreak, 400)}...`;
+    return newsShortDescription;
 }
 
 const websitePreloader = isActive => {
