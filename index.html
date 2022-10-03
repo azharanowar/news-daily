@@ -76,57 +76,6 @@
             <div class="container">
                 <div class="row row-cols-1 g-4" id="newsCards">
                     <!-- Here dynamically will load news cards from JavaScript by API -->
-                    <!-- <div class="col">
-                        <div class="card h-100 shadow-sm p-3">
-                            <div class="row align-items-center">
-                                <div class="col-md-3 text-center">
-                                    <a href="#"><img src="https://i.ibb.co/QnwC4sG/unsplash-Eh-Tc-C9s-YXsw-11.png" id="newsThumbnail" class="img-fluid" alt="News Image"></a>
-                                </div>
-                                <div class="col-md-9 text-center text-md-start">
-                                    <div class="card-body">
-                                        <a href="#"><h5 class="card-title" id="newsTitle">The best fashion influencers to follow for sartorial inspiration</h5></a>
-                                        <p class="card-text text-muted" id="newsShortDescription">From our favourite UK influencers to the best missives from Milan and the coolest New Yorkers, read on some of the best fashion blogs out there, <br><br>and for even more inspiration, do head to our separate black fashion influencer round-up. Fancy some shopping deals? Check out these amazing sales: Zara Black Friday, ASOS Black Friday, Missoma Black Friday and Gucci Black Friday...</p>
-                                        <div class="row justify-content-between align-items-center">
-                                            <div class="col-md-3 col-6">
-                                                <div class="row align-items-center justify-content-md-center">
-                                                    <div class="col-4">
-                                                        <img class="img-fluid rounded-circle" id="authorImage" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80">
-                                                    </div>
-                                                    <div class="col-8">
-                                                        <h6 class="fw-normal mb-0" id="authorName">Jane Cooper</h6>
-                                                        <p class="text-muted mb-0" id="publishedDate"><small>Jan 10, 2022</small></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 col-6">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <i class="fa-solid fa-eye text-muted"></i>
-                                                    <p class="mb-0 ms-2 text-muted" id="newsTotalViews">343 Views</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 col-6">
-                                                <div class="d-flex justify-content-center align-items-center" title="News Rating">
-                                                    <i class="fa-solid fa-star text-muted"></i>
-                                                    <i class="fa-solid fa-star text-muted"></i>
-                                                    <i class="fa-solid fa-star text-muted"></i>
-                                                    <i class="fa-solid fa-star text-muted"></i>
-                                                    <i class="fa-solid fa-star-half-stroke text-muted"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 col-6 text-center">
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <a class="learn-more-anchor">
-                                                        <span class="text-muted me-2">Learn More</span>
-                                                        <i class="fa-solid fa-arrow-right fs-5 text-primary"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </section>
@@ -138,6 +87,7 @@
     </footer>
 
 
+    
     <!-- News detailed information modal... -->
     <div class="modal fade" id="newsDetailedInformationModal" tabindex="-1" aria-labelledby="newsDetailedInformationModal"
         aria-hidden="true">
@@ -149,44 +99,38 @@
                 <div class="modal-body px-md-5 px-4 py-4">
                     <div class="row">
                         <div class="col-12">
-                            <h3 class="mb-3" id="newsDetailedModalTitle">Biden Pledges Nearly $3 Billion To Ukraine In Largest U.S. Military Aid Package Yet</h3>
+                            <h3 class="mb-3" id="newsDetailedModalTitle"></h3>
                             <div class="row mb-4 align-items-center">
                                 <div class="col-7 col-md-3">
                                     <div class="row justify-content-start align-items-center mb-2">
                                         <div class="col-3 col-md-3">
-                                            <img class="img-fluid rounded-circle" id="newsDetailedModalAuthorThumbnail" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80">
+                                            <img class="img-fluid rounded-circle" id="newsDetailedModalAuthorThumbnail" src="">
                                         </div>
                                         <div class="col-9 col-md-9">
-                                            <h5 class="fw-normal mb-0 fs-6"><span id="newsDetailedModalAuthorName"></span>Jane Cooper</h5>
-                                            <p class="text-muted mb-0"><small><span id="newsDetailedModalPublicationDate">Jan 10, 2022</span></small></p>
+                                            <h5 class="fw-normal mb-0 fs-6"><span id="newsDetailedModalAuthorName"></span></h5>
+                                            <p class="text-muted mb-0"><small><span id="newsDetailedModalPublicationDate"></span></small></p>
                                         </div>
                                     </div>
-                                    <div class="row justify-content-start align-items-center">
+                                    <!-- <div class="row justify-content-start align-items-center">
                                         <div class="col-auto">
                                             <p class=" mb-0">Category: </p>
                                         </div>
                                         <div class="col-auto">
-                                            <p class="text-muted mb-0"><span id="newsDetailedModalCategoryName">Regular News</span></p>
+                                            <p class="text-muted mb-0"><span id="newsDetailedModalCategoryName"></span></p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
-                            <img src="https://i.ibb.co/M23fhxm/unsplash-Eh-Tc-C9s-YXsw.png" class="w-75 pb-3" alt="News Image" id="newsDetailedModalThumbnailImg">
-                            <p class="" id="newsDetailedModalFullDescription">
-                                Published: 25 Aug 2022, 09: 09 US president Joe Biden speaks as he attends the first virtual meeting of the   I2U2   group with Israeli prime minister Yair Lapid and leaders of India and the United Arab Emirates, in Jerusalem 14 July, 2022ReutersUS President Joe Biden marked Ukraine's Independence Day on Wednesday with $3 billion in security assistance, Washington's largest aid package since Russia's invasion six months ago but one that could take months or even years to arrive in Kyiv.The aid announcement came as US officials warned that Russia appeared to be planning to launch fresh attacks in coming days on Ukraine's civilian infrastructure and government facilities.
-                            </p>
+                            <img src="" class="w-75 pb-3" alt="News Image" id="newsDetailedModalThumbnailImg">
+                            <p class="" id="newsDetailedModalFullDescription"></p>
                             <div class="row align-items-center">
                                 <div class="row align-items-center justify-content-start mt-2">
                                     <div class="col-auto">
                                         Rating: 
                                     </div>
                                     <div class="col-auto">
-                                        <div class="d-flex justify-content-start align-items-start" id="newsDetailedModalRatings" title="">
-                                            <i class="fa-solid fa-star text-muted"></i>
-                                            <i class="fa-solid fa-star text-muted"></i>
-                                            <i class="fa-solid fa-star text-muted"></i>
-                                            <i class="fa-solid fa-star-half-stroke text-muted"></i>
-                                            <i class="fa-regular fa-star text-muted"></i>
+                                        <div class="d-flex justify-content-start align-items-center" id="newsDetailedModalRatings">
+                                            <!-- Here automatically will load news rating stars from javascript... -->
                                         </div>
                                     </div>
                                 </div>
@@ -195,17 +139,14 @@
                                         Views: 
                                     </div>
                                     <div class="col-auto">
-                                        <p class="mb-0 text-muted"><span id="newsDetailedModalTotalViews">450</span><i class="fa-solid fa-eye ms-2 text-muted"></i></p>
+                                        <p class="mb-0 text-muted"><i class="fa-solid fa-eye me-2 text-muted"></i><span id="newsDetailedModalTotalViews"></span></p>
                                     </div>
                                 </div>
-                                <div class="row align-items-center justify-content-start mt-2">
+                                <!-- <div class="row align-items-center justify-content-start mt-2">
                                     <div class="col-auto">
                                         Trending: 
                                     </div>
-                                    <div class="col-auto">
-                                        <p class="mb-0 text-muted"><span id="newsDetailedModalTotalTrending">Todays Trending News</span><i class="fa-solid fa-eye ms-2 text-muted"></i></p>
-                                    </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

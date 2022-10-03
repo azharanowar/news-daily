@@ -140,8 +140,52 @@ const displayAllNews = (allNewsData, categoryName) => {
     websitePreloader(false);
 }
 
-const getNewsDetailedInformationById = newsId => {
-    console.log("Hello from news detailed information");
+const getNewsDetailedInformationById = async(newsId) => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/news/${newsId}`);
+    const data = await response.json();
+
+    if (data.status) {
+        displayNewsDetailedInformation(data.data[0]);
+    } else {
+        dataNotFoundMessageSection(true);
+    }
+}
+
+const displayNewsDetailedInformation = newsDetailedData => {
+
+    const newsTitle = newsDetailedData.title;
+    const newsThumbnailURL = newsDetailedData.image_url;
+    const newsFullDescription = newsDetailedData.details;
+    const newsCategoryId = newsDetailedData.category_id;
+
+    // News author information...
+    const newsAuthorName = newsDetailedData.author.name;
+    const newsAuthorThumbnailURL = newsDetailedData.author.img;
+
+    // News publication date...
+    const newsPublicationDate = getPublicationDate(newsDetailedData.author.published_date);
+
+    const newsTotalViews = newsDetailedData.total_view;
+
+    // News rating...
+    const newsRatingBadge = newsDetailedData.rating.badge;
+
+    // Here now no review number providing as argument because in this API all review number is same (4.5)...
+    // const newsRatingStars = getNewsRatingStars(newsDetailedData.rating.number);
+    const newsRatingStars = getNewsRatingStars();
+
+
+    document.getElementById("newsDetailedModalTitle").innerText = newsTitle;
+    document.getElementById("newsDetailedModalFullDescription").innerText = newsFullDescription;
+    document.getElementById("newsDetailedModalThumbnailImg").src = newsThumbnailURL;
+    
+    document.getElementById("newsDetailedModalAuthorName").innerText = newsAuthorName;
+    document.getElementById("newsDetailedModalAuthorThumbnail").src = newsAuthorThumbnailURL;
+
+    document.getElementById("newsDetailedModalPublicationDate").innerText = newsPublicationDate;
+
+    document.getElementById("newsDetailedModalRatings").innerHTML = `${newsRatingStars} (${newsRatingBadge})`;
+    document.getElementById("newsDetailedModalTotalViews").innerText = newsTotalViews;
 }
 
 const getPublicationDate = (providedDate) => {
