@@ -66,14 +66,14 @@ const displayAllNews = (allNewsData, categoryName) => {
 
         // News author information...
         const newsAuthorThumbnailURL = newsData.author.img;
-        const newsAuthorName = newsData.author.name;
+        const newsAuthorName = newsData.author.name ? newsData.author.name : "No Data Available";
 
         // News publication date...
         const newsPublicationDate = getPublicationDate(newsData.author.published_date);
 
         
 
-        const newsTotalViews = newsData.total_view;
+        const newsTotalViews = newsData.total_view ? newsData.total_view : "0";
 
         // News rating...
         const newsRatingBadge = newsData.rating.badge;
@@ -159,13 +159,13 @@ const displayNewsDetailedInformation = newsDetailedData => {
     const newsCategoryId = newsDetailedData.category_id;
 
     // News author information...
-    const newsAuthorName = newsDetailedData.author.name;
+    const newsAuthorName = newsDetailedData.author.name ? newsDetailedData.author.name : "No Data Available";
     const newsAuthorThumbnailURL = newsDetailedData.author.img;
 
     // News publication date...
     const newsPublicationDate = getPublicationDate(newsDetailedData.author.published_date);
 
-    const newsTotalViews = newsDetailedData.total_view;
+    const newsTotalViews = newsDetailedData.total_view ? newsDetailedData.total_view : "No Views";
 
     // News rating...
     const newsRatingBadge = newsDetailedData.rating.badge;
