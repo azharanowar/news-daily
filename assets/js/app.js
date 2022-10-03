@@ -76,6 +76,7 @@ const displayAllNews = (allNewsData, categoryName) => {
 
         // News rating...
         const newsRatingBadge = newsData.rating.badge;
+        const newsRatingStars = getNewsRatingStars();
 
         const newNewsCard = document.createElement('div');
         newNewsCard.classList.add('col');
@@ -109,11 +110,7 @@ const displayAllNews = (allNewsData, categoryName) => {
                                 </div>
                                 <div class="col-md-3 col-6">
                                     <div class="d-flex justify-content-center align-items-center" title="News Rating">
-                                        <i class="fa-solid fa-star text-muted"></i>
-                                        <i class="fa-solid fa-star text-muted"></i>
-                                        <i class="fa-solid fa-star text-muted"></i>
-                                        <i class="fa-solid fa-star text-muted"></i>
-                                        <i class="fa-solid fa-star-half-stroke text-muted"></i>
+                                        ${newsRatingStars}
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-6 text-center">
@@ -162,6 +159,49 @@ const getNewsShortDescription = description => {
     }
     const newsShortDescription = `${description.slice(0, shortDescriptionLineBreak)}<br><br>${description.slice(shortDescriptionLineBreak, 400)}...`;
     return newsShortDescription;
+}
+
+const getNewsRatingStars = () => {
+    // Now taking random rating because in API all rating is 4.5...
+    let rating = Math.floor(Math.random() * (5.00 -3.00 + 3.7)) + 1.5;
+    
+    // Make rating with in rating range(0-5)...
+    rating < 0 ? rating = 0 : rating;
+    rating > 5 ? rating = 5 : rating;
+
+    let ratingStar = '';
+    if ( rating >= 0 && rating <= 5 ) {
+        if (rating === 0) {
+            for (i = 1; i <= 5; i++) {
+                ratingStar += '<i class="fa-regular fa-star text-muted"></i>\n';
+            }
+            return ratingStar;
+        } else if (rating === 5) {
+            for (i = 1; i <= 5; i++) {
+                ratingStar += '<i class="fa-solid fa-star text-muted"></i>\n';
+            }
+            return ratingStar;
+        } else {
+            const fullStarRating = Math.floor(rating);
+            const halfStarRating = rating - fullStarRating ? 1 : 0;
+            if (halfStarRating) {
+                for (i = 1; i <= fullStarRating; i++) {
+                    ratingStar += '<i class="fa-solid fa-star text-muted"></i>\n';
+                }
+                ratingStar += '<i class="fa-solid fa-star-half-stroke text-muted"></i>\n';
+            } else {
+                for (i = 1; i <= fullStarRating + 1; i++) {
+                    ratingStar += '<i class="fa-solid fa-star text-muted"></i>\n';
+                }
+            }
+
+            const restStar = 5 - (fullStarRating + halfStarRating);
+            for (i=1; i <= restStar; i++) {
+                ratingStar += '<i class="fa-regular fa-star text-muted"></i>\n';
+            }
+            return ratingStar;
+        }
+    }
 }
 
 const websitePreloader = isActive => {
