@@ -171,36 +171,21 @@ const getNewsRatingStars = () => {
 
     let ratingStar = '';
     if ( rating >= 0 && rating <= 5 ) {
-        if (rating === 0) {
-            for (i = 1; i <= 5; i++) {
-                ratingStar += '<i class="fa-regular fa-star text-muted"></i>\n';
-            }
-            return ratingStar;
-        } else if (rating === 5) {
-            for (i = 1; i <= 5; i++) {
+        const fullStarRating = Math.floor(rating);
+        const halfStarRating = rating - fullStarRating ? 1 : 0;
+        const restStar = 5 - (fullStarRating + halfStarRating);
+        if (fullStarRating) {
+            for (i = 1; i <= fullStarRating; i++) {
                 ratingStar += '<i class="fa-solid fa-star text-muted"></i>\n';
             }
-            return ratingStar;
-        } else {
-            const fullStarRating = Math.floor(rating);
-            const halfStarRating = rating - fullStarRating ? 1 : 0;
-            if (halfStarRating) {
-                for (i = 1; i <= fullStarRating; i++) {
-                    ratingStar += '<i class="fa-solid fa-star text-muted"></i>\n';
-                }
-                ratingStar += '<i class="fa-solid fa-star-half-stroke text-muted"></i>\n';
-            } else {
-                for (i = 1; i <= fullStarRating + 1; i++) {
-                    ratingStar += '<i class="fa-solid fa-star text-muted"></i>\n';
-                }
-            }
-
-            const restStar = 5 - (fullStarRating + halfStarRating);
-            for (i=1; i <= restStar; i++) {
-                ratingStar += '<i class="fa-regular fa-star text-muted"></i>\n';
-            }
-            return ratingStar;
         }
+        if (halfStarRating){
+            ratingStar += '<i class="fa-solid fa-star-half-stroke text-muted"></i>\n';
+        }
+        for (i=1; i <= restStar; i++) {
+            ratingStar += '<i class="fa-regular fa-star text-muted"></i>\n';
+        }
+        return ratingStar;
     }
 }
 
