@@ -59,6 +59,23 @@
                         <p class="mb-0 text-secondary" id="newsFoundMessage"></p>
                     </div>
                 </div>
+                <div class="row justify-content-between align-items-center pt-4 pb-2 my-3 mx-1" id="newsSortingSection">
+                    <div class="col-6">
+                        <input type="text" value="" id="categoryIdField" hidden></input>
+                        <input type="text" value="" id="categoryNameField" hidden></input>
+                        <span>Sort By: 
+                            <select class="form-select-sm py-2 px-2 ms-0 me-md-2" id="newsSortByOptions">
+                                <option value="default">Default</option>
+                                <option value="most-viewed">Most Viewed</option>
+                                <option value="most-recent">Most Recent</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="button" class="btn news-today-btn-primary news-today-btn-active p-2 px-4 me-0 me-md-2 mb-2 mb-md-0">Today's Pick</button>
+                        <button type="button" class="btn news-today-btn-outline-primary p-2 px-4">Trending</button>
+                    </div>
+                </div>
                 <div class="row rounded-3 py-4 text-center" id="preloaderSection">
                     <div class="col-md-12">
                         <img src="assets/images/preloader.gif" class="preloader-img" alt="preloader image">

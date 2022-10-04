@@ -8,8 +8,30 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Poppins";
 }
 
-.bg-primary {
-    background-color: #0d6efd !important;
+.news-today-btn-primary {
+    color: #0d6efd !important;
+    border: 1px solid #0d6efd !important;
+}
+
+.news-today-btn-primary:hover {
+    background-color: #0b5ed7 !important;
+    color: #FFFFFF !important;
+}
+
+
+.news-today-btn-outline-primary {
+    color: #0d6efd !important;
+    border: 1px solid #0d6efd !important;
+}
+
+.news-today-btn-outline-primary:hover {
+    background-color: #0b5ed7 !important;
+    color: #FFFFFF !important;
+}
+
+.news-today-btn-active {
+    background-color: #0951be !important;
+    color: #FFFFFF !important;
 }
 
 .navbar-nav .active {
@@ -52,4 +74,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .learn-more-anchor {
     text-decoration: none;
+}
+
+#newsSortingSection {
+    display: none;
 }

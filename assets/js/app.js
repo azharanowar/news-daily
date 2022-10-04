@@ -35,14 +35,31 @@ document.getElementById("mainMenuUl").addEventListener('click', (event) => {
 });
 
 
-const getAllNewsByCategoryId = async(categoryId, categoryName = '') => {
+const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'default') => {
     websitePreloader(true);
-    document.getElementById("newsCards").innerHTML = '';
 
+    // News sort related work...
+    document.getElementById("categoryIdField").value = categoryId;
+    document.getElementById("categoryNameField").value = categoryName;
+    document.getElementById("newsSortByOptions").value = sortBy;
+    
+    document.getElementById("newsCards").innerHTML = '';
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`);
     const data = await response.json();
     if (data.status) {
-        displayAllNews(data.data, categoryName);
+        const allNewsData = data.data;
+        
+        if (sortBy === 'most-viewed') {
+            allNewsData.sort((a,b) => b?.total_view - a?.total_view);
+        } else if (sortBy === 'most-recent') {
+            allNewsData.sort((a,b) => {
+                let aPublicationDate = new Date(a.author.published_date);
+                let bPublicationDate = new Date(b.author.published_date);
+                return bPublicationDate - aPublicationDate;
+            });
+        }
+
+        displayAllNews(allNewsData, categoryName);
     } else {
         // Error data not found...
         newsDataFoundMessage(false);
@@ -188,6 +205,16 @@ const displayNewsDetailedInformation = newsDetailedData => {
     document.getElementById("newsDetailedModalTotalViews").innerText = newsTotalViews;
 }
 
+
+document.getElementById("newsSortByOptions").addEventListener('change', (event) => {
+    const categoryId = document.getElementById("categoryIdField").value;
+    const categoryName = document.getElementById("categoryNameField").value;
+    const sortByValue = event.target.value;
+    if (categoryId) {
+        getAllNewsByCategoryId(categoryId, categoryName, sortByValue);
+    }
+});
+
 const getPublicationDate = (providedDate) => {
     const newsPublicationDate = new Date(providedDate);
     const yyyy = newsPublicationDate.getFullYear();
@@ -259,10 +286,13 @@ const dataNotFoundMessageSection = noDataFound => {
 }
 const newsDataFoundMessage = (displaySection, message = '') => {
     const newsFoundMessageSection = document.getElementById("newsFoundMessageSection");
+    const newsSortingSection = document.getElementById("newsSortingSection");
     if (displaySection) {
         newsFoundMessageSection.style.display = "block";
+        newsSortingSection.style.display = "flex";
         document.getElementById("newsFoundMessage").innerText = message;
     } else {
         newsFoundMessageSection.style.display = "none";
+        newsSortingSection.style.display = "none";
     }
 }
