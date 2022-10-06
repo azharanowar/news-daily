@@ -35,7 +35,7 @@ document.getElementById("mainMenuUl").addEventListener('click', (event) => {
 });
 
 
-const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'default') => {
+const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'default', newsFilterOption = '') => {
     websitePreloader(true);
 
     // News sort related work...
@@ -47,7 +47,7 @@ const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'de
     const response = await fetch(`https://openapi.programming-hero.com/api/news/category/${categoryId}`);
     const data = await response.json();
     if (data.status) {
-        const allNewsData = data.data;
+        let allNewsData = data.data;
         
         if (sortBy === 'most-viewed') {
             allNewsData.sort((a,b) => b?.total_view - a?.total_view);
@@ -59,7 +59,21 @@ const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'de
             });
         }
 
-        displayAllNews(allNewsData, categoryName);
+        if (newsFilterOption === 'todays-pick') {
+            allNewsData = allNewsData.filter(news => news.others_info.is_todays_pick);
+        } else if (newsFilterOption === 'trending') {
+            allNewsData = allNewsData.filter(news => news.others_info.is_trending);
+        }
+
+        if (allNewsData.length !== 0) {
+            displayAllNews(allNewsData, categoryName);
+        } else {
+            // Error data not found...
+            dataNotFoundMessageSection(true);
+            const newsFoundMessage = `${allNewsData.length} News found by the category of ${categoryName}.`;
+            newsDataFoundMessage(true, newsFoundMessage);
+            websitePreloader(false);
+        }
     } else {
         // Error data not found...
         newsDataFoundMessage(false);
@@ -213,6 +227,22 @@ document.getElementById("newsSortByOptions").addEventListener('change', (event) 
     if (categoryId) {
         getAllNewsByCategoryId(categoryId, categoryName, sortByValue);
     }
+});
+
+
+document.getElementById("newsFilterBtnSection").addEventListener('click', (event) => {
+    const activeFilterBtn = document.querySelector("#newsFilterBtnSection .news-today-btn-active");
+    if(event.target.classList.contains('news-filter-btn')) {
+        if(event.target !== activeFilterBtn) {
+            activeFilterBtn.classList.remove('news-today-btn-active');
+            event.target.classList.add('news-today-btn-active');
+
+            const categoryId = document.getElementById("categoryIdField").value;
+            const categoryName = document.getElementById("categoryNameField").value;
+            const sortByValue = document.getElementById("newsSortByOptions").value;
+            getAllNewsByCategoryId(categoryId, categoryName, sortByValue, event.target.value);
+        }
+    };
 });
 
 const getPublicationDate = (providedDate) => {
