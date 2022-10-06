@@ -67,11 +67,12 @@ const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'de
 
         if (allNewsData.length !== 0) {
             displayAllNews(allNewsData, categoryName);
-        } else {
-            // Error data not found...
-            dataNotFoundMessageSection(true);
             const newsFoundMessage = `${allNewsData.length} News found by the category of ${categoryName}.`;
             newsDataFoundMessage(true, newsFoundMessage);
+        } else {
+            // Error data not found...
+            newsDataFoundMessage(false);
+            dataNotFoundMessageSection(true);
             websitePreloader(false);
         }
     } else {
@@ -166,8 +167,6 @@ const displayAllNews = (allNewsData, categoryName) => {
     });
 
     dataNotFoundMessageSection(false);
-    const newsFoundMessage = `${allNewsData.length} News found by the category of ${categoryName}.`;
-    newsDataFoundMessage(true, newsFoundMessage);
     websitePreloader(false);
 }
 
@@ -318,7 +317,7 @@ const newsDataFoundMessage = (displaySection, message = '') => {
     const newsFoundMessageSection = document.getElementById("newsFoundMessageSection");
     const newsSortingSection = document.getElementById("newsSortingSection");
     if (displaySection) {
-        newsFoundMessageSection.style.display = "block";
+        newsFoundMessageSection.style.display = "flex";
         newsSortingSection.style.display = "flex";
         document.getElementById("newsFoundMessage").innerText = message;
     } else {
