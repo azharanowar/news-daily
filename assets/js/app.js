@@ -313,6 +313,7 @@ const dataNotFoundMessageSection = noDataFound => {
         noDataFoundSection.style.display = "none";
     }
 }
+
 const newsDataFoundMessage = (displaySection, message = '') => {
     const newsFoundMessageSection = document.getElementById("newsFoundMessageSection");
     const newsSortingSection = document.getElementById("newsSortingSection");
@@ -325,3 +326,7 @@ const newsDataFoundMessage = (displaySection, message = '') => {
         newsSortingSection.style.display = "none";
     }
 }
+
+document.getElementById("newsFoundMessageSectionHide").addEventListener('click', () => {
+    document.getElementById("newsFoundMessageSection").style.display = "none";
+});
