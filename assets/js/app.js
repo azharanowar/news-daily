@@ -31,6 +31,12 @@ document.getElementById("mainMenuUl").addEventListener('click', (event) => {
     if (newActiveCategory.classList.contains('nav-link') && activeCategory !== event.target) {
         activeCategory.classList.remove('active');
         newActiveCategory.classList.add('active');
+
+        // If home page active function calling;
+        const isHomeNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
+        if (isHomeNavMenuActive) {
+            homePageContent();
+        }
     }
 });
 
@@ -243,6 +249,15 @@ document.getElementById("newsFilterBtnSection").addEventListener('click', (event
         }
     };
 });
+
+const homePageContent = () => {
+    const isHomePageNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
+    if (isHomePageNavMenuActive) {
+        
+    }
+}
+homePageContent();
+
 
 const getPublicationDate = (providedDate) => {
     const newsPublicationDate = new Date(providedDate);
