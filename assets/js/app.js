@@ -249,24 +249,6 @@ document.getElementById("newsFilterBtnSection").addEventListener('click', (event
 
 
 
-
-// Home page content showing...
-
-const homePageContent = () => {
-    const isHomePageNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
-    if (isHomePageNavMenuActive) {
-        document.getElementById("categoryNewsSection").style.display = "none";
-        document.getElementById("homePageSection").style.display = "block";
-    } else {
-        document.getElementById("categoryNewsSection").style.display = "block";
-        document.getElementById("homePageSection").style.display = "none";
-    }
-}
-homePageContent();
-
-
-
-
 // Common website...
 
 const getPublicationDate = (providedDate) => {
@@ -355,3 +337,26 @@ const newsDataFoundMessage = (displaySection, message = '') => {
 document.getElementById("newsFoundMessageSectionHide").addEventListener('click', () => {
     document.getElementById("newsFoundMessageSection").style.display = "none";
 });
+
+
+
+
+// Home page content showing...
+
+const homePageContent = () => {
+    const isHomePageNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
+    if (isHomePageNavMenuActive) {
+
+        document.getElementById("categoryNewsSection").style.display = "none";
+        document.getElementById("homePageSection").style.display = "block";
+
+        sliderContentShowing();
+
+    } else {
+        document.getElementById("categoryNewsSection").style.display = "block";
+        document.getElementById("homePageSection").style.display = "none";
+    }
+}
+
+
+homePageContent();
