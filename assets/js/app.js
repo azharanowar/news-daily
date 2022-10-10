@@ -343,6 +343,31 @@ document.getElementById("newsFoundMessageSectionHide").addEventListener('click',
 
 // Home page content showing...
 
+const getSliderContent = async() => {
+    const response = await fetch('https://openapi.programming-hero.com/api/news/category/04');
+    const data = await response.json();
+    
+    if (data.status === true) {
+        displaySliderContent(data.data);
+    }
+}
+
+const displaySliderContent = (newsDataItems) => {
+    const sliderIndicators = document.getElementById("sliderIndicators");
+    for (i = 0; i < newsDataItems.length; i++) {
+        const newSliderIndicator = document.createElement('button');
+        newSliderIndicator.setAttribute('type', 'button');
+        newSliderIndicator.setAttribute('data-bs-target', '#homePageHeroSectionSlider');
+        newSliderIndicator.setAttribute('data-bs-slide-to', i);
+        newSliderIndicator.setAttribute('aria-label', 'Slide ' + i);
+        if (i === 0) {
+            newSliderIndicator.setAttribute('class', 'active');
+        }
+
+        sliderIndicators.appendChild(newSliderIndicator);
+    }
+}
+
 const homePageContent = () => {
     const isHomePageNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
     if (isHomePageNavMenuActive) {
@@ -350,7 +375,7 @@ const homePageContent = () => {
         document.getElementById("categoryNewsSection").style.display = "none";
         document.getElementById("homePageSection").style.display = "block";
 
-        sliderContentShowing();
+        getSliderContent();
 
     } else {
         document.getElementById("categoryNewsSection").style.display = "block";
