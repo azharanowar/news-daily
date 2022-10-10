@@ -247,6 +247,11 @@ document.getElementById("newsFilterBtnSection").addEventListener('click', (event
     };
 });
 
+
+
+
+// Home page content showing...
+
 const homePageContent = () => {
     const isHomePageNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
     if (isHomePageNavMenuActive) {
@@ -259,6 +264,10 @@ const homePageContent = () => {
 }
 homePageContent();
 
+
+
+
+// Common website...
 
 const getPublicationDate = (providedDate) => {
     const newsPublicationDate = new Date(providedDate);
