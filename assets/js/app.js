@@ -33,10 +33,7 @@ document.getElementById("mainMenuUl").addEventListener('click', (event) => {
         newActiveCategory.classList.add('active');
 
         // If home page active function calling;
-        const isHomeNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
-        if (isHomeNavMenuActive) {
-            homePageContent();
-        }
+        homePageContent();
     }
 });
 
@@ -253,7 +250,11 @@ document.getElementById("newsFilterBtnSection").addEventListener('click', (event
 const homePageContent = () => {
     const isHomePageNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
     if (isHomePageNavMenuActive) {
-        
+        document.getElementById("categoryNewsSection").style.display = "none";
+        document.getElementById("homePageSection").style.display = "block";
+    } else {
+        document.getElementById("categoryNewsSection").style.display = "block";
+        document.getElementById("homePageSection").style.display = "none";
     }
 }
 homePageContent();
