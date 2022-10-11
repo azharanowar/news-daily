@@ -353,14 +353,23 @@ const getSliderContent = async() => {
 }
 
 const displaySliderContent = (newsDataItems) => {
-    console.log(newsDataItems)
     const sliderElements = document.getElementById("sliderElements");
     const sliderIndicators = document.getElementById("sliderIndicators");
 
     for (i = 0; i < newsDataItems.length; i++) {
         const newsTitle = newsDataItems[i].title;
         const newsImage = newsDataItems[i].image_url;
-        console.log(newsTitle);
+
+        // News author information...
+        const newsAuthorThumbnailURL = newsDataItems[i].author.img;
+        const newsAuthorName = newsDataItems[i].author.name ? newsDataItems[i].author.name : "No Data Available";
+
+        // News publication date...
+        const newsPublicationDate = getPublicationDate(newsDataItems[i].author.published_date);
+
+
+        const newsTotalViews = newsDataItems[i].total_view ? newsDataItems[i].total_view : "0";
+
 
         // For slider elements...
         const newSliderElement = document.createElement('div');
@@ -370,8 +379,29 @@ const displaySliderContent = (newsDataItems) => {
         newSliderElement.innerHTML = `<img src="${newsImage}" class="img-fluid w-100 h-100" alt="${newsTitle} Image">
             <div class="carousel-caption d-md-block">
                 <h5 class="fs-4">${newsTitle}</h5>
-                <p class="">Some representative placeholder content for the first slide.</p>
+                <div class="row justify-content-center align-items-center mt-3">
+                    <div class="col-md-5 col-8">
+                        <div class="row align-items-center text-start">
+                            <div class="col-4 col-md-4">
+                                <img class="img-fluid rounded-circle" id="authorImage" src="${newsAuthorThumbnailURL}" alt="Author ${newsAuthorName} Image">
+                            </div>
+                            <div class="col-8 col-md-8">
+                                <h6 class="fw-normal mb-0 text-capitalize" id="authorName">${newsAuthorName}</h6>
+                                <p class=" mb-0" id="publishedDate"><small>${newsPublicationDate}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-4">
+                        <div class="d-flex justify-content-end justify-content-md-center align-items-center">
+                            <i class="fa-solid fa-eye"></i>
+                            <p class="mb-0 ms-2" id="newsTotalViews">${newsTotalViews} Views</p>
+                        </div>
+                    </div>
+            </div>
+                
+                </p>
             </div>`;
+            
         if (i === 0) {
             newSliderElement.classList.add('active');
         }
