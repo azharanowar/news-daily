@@ -359,6 +359,7 @@ const displaySliderContent = (newsDataItems) => {
     for (i = 0; i < newsDataItems.length; i++) {
         const newsTitle = newsDataItems[i].title;
         const newsImage = newsDataItems[i].image_url;
+        const newsId = newsDataItems[i]._id;
 
         // News author information...
         const newsAuthorThumbnailURL = newsDataItems[i].author.img;
@@ -397,9 +398,8 @@ const displaySliderContent = (newsDataItems) => {
                             <p class="mb-0 ms-2" id="newsTotalViews">${newsTotalViews} Views</p>
                         </div>
                     </div>
-            </div>
-                
-                </p>
+                </div>
+                <button type="button" class="btn news-today-btn-primary news-today-btn-active px-4 py-2 mb-2 mt-2" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">Learn More</button>
             </div>`;
             
         if (i === 0) {
