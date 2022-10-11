@@ -378,7 +378,7 @@ const displaySliderContent = (newsDataItems) => {
         newSliderElement.classList.add('slider-element');
         newSliderElement.classList.add('dark-overly');
         newSliderElement.innerHTML = `<img src="${newsImage}" class="img-fluid w-100 h-100" alt="${newsTitle} Image">
-            <div class="carousel-caption d-md-block">
+            <div class="carousel-caption d-md-block mb-3">
                 <h5 class="fs-4">${newsTitle}</h5>
                 <div class="row justify-content-center align-items-center mt-3">
                     <div class="col-md-5 col-8">
@@ -399,7 +399,7 @@ const displaySliderContent = (newsDataItems) => {
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn news-today-btn-primary news-today-btn-active px-4 py-2 mb-2 mt-2" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">Learn More</button>
+                <button type="button" class="btn news-today-btn-primary news-today-btn-active px-4 py-2 mt-2" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">Learn More</button>
             </div>`;
             
         if (i === 0) {
