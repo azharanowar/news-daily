@@ -385,7 +385,7 @@ const displaySliderContent = (newsDataItems) => {
         newSliderElement.innerHTML = `<img src="${newsImage}" class="img-fluid w-100 h-100" alt="${newsTitle} Image">
             <div class="carousel-caption d-md-block mb-3">
                 <h5 class="fs-4">${newsTitle}</h5>
-                <div class="row justify-content-center align-items-center mt-3">
+                <div class="row justify-content-center align-items-center mt-3 d-none d-md-flex">
                     <div class="col-md-5 col-8">
                         <div class="row align-items-center text-start">
                             <div class="col-4 col-md-4">
