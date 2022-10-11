@@ -514,7 +514,12 @@ const displayLatestNews = (newsData) => {
         const newsImage = newsItem.image_url;
         const newsId = newsItem._id;
 
-        const newsTotalViews = newsItem.total_view ? newsItem.total_view : "0";
+        // News author information...
+        const newsAuthorThumbnailURL = newsItem.author.img;
+        const newsAuthorName = newsItem.author.name ? newsItem.author.name : "No Data Available";
+
+        // News publication date...
+        const newsPublicationDate = getPublicationDate(newsItem.author.published_date);
 
         const newNewsCard = document.createElement('div');
         newNewsCard.classList.add('col');
@@ -524,18 +529,24 @@ const displayLatestNews = (newsData) => {
                 <div class="card-body">
                     <h5 class="card-title">${newsTitle}</h5>
                     <div class="row justify-content-center align-items-center mt-3">
-                    <div class="col-md-6 col-6">
-                        <div class="d-flex justify-content-md-start align-items-center">
-                            <i class="fa-solid fa-eye text-muted"></i>
-                            <p class="mb-0 ms-2 text-muted" id="newsTotalViews">${newsTotalViews} Views</p>
+                        <div class="col-md-7 col-7">
+                            <div class="row align-items-center text-start">
+                                <div class="col-4 col-md-4">
+                                    <img class="img-fluid rounded-circle" id="authorImage" src="${newsAuthorThumbnailURL}" alt="Author ${newsAuthorName} Image">
+                                </div>
+                                <div class="col-8 col-md-8">
+                                    <h6 class="fw-normal mb-0 text-capitalize" id="authorName">${newsAuthorName}</h6>
+                                    <p class=" mb-0" id="publishedDate"><small>${newsPublicationDate}</small></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-6">
-                        <div class="d-flex justify-content-md-start align-items-center">
-                            <a class="learn-more-anchor" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">
-                                <span class="text-muted me-2">Learn More</span>
-                                <i class="fa-solid fa-arrow-right text-primary"></i>
-                            </a>
+                        <div class="col-md-5 col-5">
+                            <div class="d-flex justify-content-md-start align-items-center">
+                                <a class="learn-more-anchor" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">
+                                    <span class="text-muted me-2">Learn More</span>
+                                    <i class="fa-solid fa-arrow-right text-primary"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
