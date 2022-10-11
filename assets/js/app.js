@@ -343,12 +343,17 @@ document.getElementById("newsFoundMessageSectionHide").addEventListener('click',
 
 // Home page content showing...
 
-const getSliderContent = async() => {
-    const response = await fetch('https://openapi.programming-hero.com/api/news/category/04');
-    const data = await response.json();
-    
-    if (data.status === true) {
-        displaySliderContent(data.data);
+const getSliderContent = async(isActive) => {
+    if (isActive) {
+        const response = await fetch('https://openapi.programming-hero.com/api/news/category/04');
+        const data = await response.json();
+        
+        if (data.status === true) {
+            displaySliderContent(data.data);
+        }
+    } else {
+        document.getElementById("sliderElements").innerHTML = "";
+        document.getElementById("sliderIndicators").innerHTML = "";
     }
 }
 
@@ -423,6 +428,24 @@ const displaySliderContent = (newsDataItems) => {
     }
 }
 
+const getSidebarNewsContent = async(isActive) => {
+    if (isActive) {
+        const response = await fetch('https://openapi.programming-hero.com/api/news/category/05');
+        const data = await response.json();
+
+        if (data.status === true) {
+            displaySidebarNewsContent(data.data);
+        }
+    } else {
+        //
+    }
+}
+
+const displaySidebarNewsContent = (newsData) => {
+    console.log(newsData);
+
+}
+
 const homePageContent = () => {
     const isHomePageNavMenuActive = document.getElementById("homePageNavLink").classList.contains('active');
     if (isHomePageNavMenuActive) {
@@ -430,13 +453,14 @@ const homePageContent = () => {
         document.getElementById("categoryNewsSection").style.display = "none";
         document.getElementById("homePageSection").style.display = "block";
 
-        getSliderContent();
+        getSliderContent(true);
+        getSidebarNewsContent(true);
 
     } else {
         document.getElementById("categoryNewsSection").style.display = "block";
         document.getElementById("homePageSection").style.display = "none";
-        document.getElementById("sliderElements").innerHTML = "";
-        document.getElementById("sliderIndicators").innerHTML = "";
+        getSliderContent(false);
+        getSidebarNewsContent(false);
     }
 }
 
