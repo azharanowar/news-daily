@@ -37,6 +37,17 @@ document.getElementById("mainMenuUl").addEventListener('click', (event) => {
     }
 });
 
+// Change top bar nav menu item...
+document.getElementById("topNavbarUl").addEventListener('click', (event) => {
+    const activeCategory = document.querySelector('#topNavbarUl .active');
+    const newActiveCategory = event.target;
+    if (newActiveCategory.classList.contains('nav-link') && activeCategory !== event.target) {
+        activeCategory.classList.remove('active');
+        newActiveCategory.classList.add('active');
+    }
+});
+
+
 
 const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'default', newsFilterOption = '') => {
     websitePreloader(true);
@@ -481,8 +492,6 @@ const displaySidebarNewsContent = (newsData) => {
             </div>`;
 
         sidebarNewsCards.appendChild(newNewsCard);
-
-        
     });
 }
 
@@ -506,7 +515,6 @@ const getLatestNews = async(isActive) => {
 }
 
 const displayLatestNews = (newsData) => {
-    console.log(newsData)
     const sidebarNewsCards = document.getElementById("latestNewsCards");
 
     newsData.forEach(newsItem => {
