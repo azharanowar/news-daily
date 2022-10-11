@@ -353,8 +353,33 @@ const getSliderContent = async() => {
 }
 
 const displaySliderContent = (newsDataItems) => {
+    console.log(newsDataItems)
+    const sliderElements = document.getElementById("sliderElements");
     const sliderIndicators = document.getElementById("sliderIndicators");
+
     for (i = 0; i < newsDataItems.length; i++) {
+        const newsTitle = newsDataItems[i].title;
+        const newsImage = newsDataItems[i].image_url;
+        console.log(newsTitle);
+
+        // For slider elements...
+        const newSliderElement = document.createElement('div');
+        newSliderElement.classList.add('carousel-item');
+        newSliderElement.classList.add('slider-element');
+        newSliderElement.classList.add('dark-overly');
+        newSliderElement.innerHTML = `<img src="${newsImage}" class="img-fluid w-100 h-100" alt="${newsTitle} Image">
+            <div class="carousel-caption d-md-block">
+                <h5 class="fs-4">${newsTitle}</h5>
+                <p class="">Some representative placeholder content for the first slide.</p>
+            </div>`;
+        if (i === 0) {
+            newSliderElement.classList.add('active');
+        }
+
+        sliderElements.appendChild(newSliderElement);
+
+
+        // For slider indicators...
         const newSliderIndicator = document.createElement('button');
         newSliderIndicator.setAttribute('type', 'button');
         newSliderIndicator.setAttribute('data-bs-target', '#homePageHeroSectionSlider');
