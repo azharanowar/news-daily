@@ -44,6 +44,8 @@ document.getElementById("topNavbarUl").addEventListener('click', (event) => {
     if (newActiveCategory.classList.contains('nav-link') && activeCategory !== event.target) {
         activeCategory.classList.remove('active');
         newActiveCategory.classList.add('active');
+
+        topBarNavItemToContent();
     }
 });
 
@@ -584,5 +586,28 @@ const homePageContent = () => {
     }
 }
 
-
 homePageContent();
+
+
+const topBarNavItemToContent = () => {
+    const topBarActiveNavMenuId = document.querySelector("#topNavbarUl .active").id;
+    if (topBarActiveNavMenuId === "topBarNavItemNews") {
+        if (document.getElementById("homePageNavLink").classList.contains('active')) {
+            document.getElementById("homePageSection").style.display = 'block';
+        } else {
+            document.getElementById("categoryNewsSection").style.display = 'block';
+            document.getElementById("mainContentSection").style.display = 'block';
+        }
+        document.getElementById("blogContentSection").style.display = 'none';
+    } else if (topBarActiveNavMenuId === "topBarNavItemBlog") {
+        if (document.getElementById("homePageNavLink").classList.contains('active')) {
+            document.getElementById("homePageSection").style.display = 'none';
+        } else {
+            document.getElementById("categoryNewsSection").style.display = 'none';
+            document.getElementById("mainContentSection").style.display = 'none';
+        }
+        document.getElementById("blogContentSection").style.display = 'block';
+    }
+}
+
+topBarNavItemToContent();
