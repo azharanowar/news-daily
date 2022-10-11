@@ -442,8 +442,6 @@ const getSidebarNewsContent = async(isActive) => {
 }
 
 const displaySidebarNewsContent = (newsData) => {
-    console.log(newsData);
-
     const sidebarNewsCards = document.getElementById("sidebarNewsCards");
 
     newsData.forEach(newsItem => {
@@ -451,29 +449,38 @@ const displaySidebarNewsContent = (newsData) => {
         const newsImage = newsItem.image_url;
         const newsId = newsItem._id;
 
-        // News author information...
-        const newsAuthorThumbnailURL = newsItem.author.img;
-        const newsAuthorName = newsItem.author.name ? newsItem.author.name : "No Data Available";
-
-        // News publication date...
-        const newsPublicationDate = getPublicationDate(newsItem.author.published_date);
-
         const newsTotalViews = newsItem.total_view ? newsItem.total_view : "0";
 
         const newNewsCard = document.createElement('div');
         newNewsCard.classList.add('col');
 
-        newNewsCard.innerHTML = `
-            <div class="card h-100">
+        newNewsCard.innerHTML = `<div class="card h-100">
                 <img src="${newsImage}" class="card-img-top" alt="${newsTitle} Image">
                 <div class="card-body">
                     <h5 class="card-title">${newsTitle}</h5>
-                    <p class="card-text text-muted"></p>
+                    <div class="row justify-content-center align-items-center mt-3">
+                    <div class="col-md-6 col-6">
+                        <div class="d-flex justify-content-md-start align-items-center">
+                            <small class="d-flex align-items-center">
+                                <i class="fa-solid fa-eye text-muted"></i>
+                                <p class="mb-0 ms-2 text-muted" id="newsTotalViews">${newsTotalViews} Views</p>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <div class="d-flex justify-content-md-start align-items-center">
+                            <a class="learn-more-anchor" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">
+                                <small>
+                                    <span class="text-muted me-2">Learn More</span>
+                                    <i class="fa-solid fa-arrow-right text-primary"></i>
+                                </small>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            `;
+            </div>`;
 
-            sidebarNewsCards.appendChild(newNewsCard);
+        sidebarNewsCards.appendChild(newNewsCard);
 
         
     });
