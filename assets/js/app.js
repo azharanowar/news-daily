@@ -405,6 +405,8 @@ const homePageContent = () => {
     } else {
         document.getElementById("categoryNewsSection").style.display = "block";
         document.getElementById("homePageSection").style.display = "none";
+        document.getElementById("sliderElements").innerHTML = "";
+        document.getElementById("sliderIndicators").innerHTML = "";
     }
 }
 
