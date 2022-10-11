@@ -444,6 +444,41 @@ const getSidebarNewsContent = async(isActive) => {
 const displaySidebarNewsContent = (newsData) => {
     console.log(newsData);
 
+    const sidebarNewsCards = document.getElementById("sidebarNewsCards");
+
+    newsData.forEach(newsItem => {
+        const newsTitle = newsItem.title;
+        const newsImage = newsItem.image_url;
+        const newsId = newsItem._id;
+
+        // News author information...
+        const newsAuthorThumbnailURL = newsItem.author.img;
+        const newsAuthorName = newsItem.author.name ? newsItem.author.name : "No Data Available";
+
+        // News publication date...
+        const newsPublicationDate = getPublicationDate(newsItem.author.published_date);
+
+        const newsTotalViews = newsItem.total_view ? newsItem.total_view : "0";
+
+        const newNewsCard = document.createElement('div');
+        newNewsCard.classList.add('col');
+
+        newNewsCard.innerHTML = `
+            <div class="card h-100">
+                <img src="${newsImage}" class="card-img-top" alt="${newsTitle} Image">
+                <div class="card-body">
+                    <h5 class="card-title">${newsTitle}</h5>
+                    <p class="card-text text-muted"></p>
+                </div>
+            </div>
+            `;
+
+            sidebarNewsCards.appendChild(newNewsCard);
+
+        
+    });
+
+
 }
 
 const homePageContent = () => {
