@@ -53,26 +53,40 @@
         <!-- Home page section... -->
         <section class="py-5" id="homePageSection">
             <div class="container">
-                <h1 class="fs-1 fw-bold mb-4">Todays Updated...</h1>
                 <div class="row g-3">
                     <div class="col-md-9">
-                        <div class="pb-4 bg-white rounded-3">
-                            <div id="homePageHeroSectionSlider" class="carousel slide" data-bs-ride="false">
-                                <div class="carousel-indicators" id="sliderIndicators">
+                        <div class="row">
+                            <h1 class="fs-1 fw-bold mb-3">Todays Updated...</h1>
+                            <div class="col-md-12">
+                                <div class="bg-white rounded-3">
+                                    <div id="homePageHeroSectionSlider" class="carousel slide" data-bs-ride="false">
+                                        <div class="carousel-indicators" id="sliderIndicators">
+                                        </div>
+                                        <div class="carousel-inner rounded-3" id="sliderElements">
+                                            <!-- Here dynamically will load slider elements... -->
+                                        </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#homePageHeroSectionSlider" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#homePageHeroSectionSlider" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="carousel-inner rounded-3" id="sliderElements">
-                                    <!-- Here dynamically will load slider elements... -->
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-12">
+                                <div class="bg-white rounded-3 py-5 px-4">
+                                    <h1 class="fs-2 fw-semibold mb-3">Latest News...</h1>
+                                    <div class="row row-cols-1 row-cols-md-2 g-4" id="latestNewsCards">
+                                        <!-- Here dynamically will load latest news data from JS... -->
+                                    </div>
                                 </div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#homePageHeroSectionSlider" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#homePageHeroSectionSlider" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
                         </div>
                     </div>

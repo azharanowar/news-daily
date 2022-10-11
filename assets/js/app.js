@@ -437,7 +437,7 @@ const getSidebarNewsContent = async(isActive) => {
             displaySidebarNewsContent(data.data);
         }
     } else {
-        //
+        document.getElementById("sidebarNewsCards").innerHTML = '';
     }
 }
 
@@ -484,8 +484,65 @@ const displaySidebarNewsContent = (newsData) => {
 
         
     });
+}
 
+const getLatestNews = async(isActive) => {
+    if (isActive) {
+        const response = await fetch('https://openapi.programming-hero.com/api/news/category/01');
+        const data = await response.json();
 
+        if (data.status === true) {
+            let newsData = data.data;
+            newsData = newsData.sort((a, b) => {
+                let dateA = new Date(a.author.published_date);
+                let dateB = new Date(b.author.published_date);
+                return dateB - dateA;
+            });
+            displayLatestNews(newsData);
+        }
+    } else {
+        document.getElementById("latestNewsCards").innerHTML = '';
+    }
+}
+
+const displayLatestNews = (newsData) => {
+    console.log(newsData)
+    const sidebarNewsCards = document.getElementById("latestNewsCards");
+
+    newsData.forEach(newsItem => {
+        const newsTitle = newsItem.title;
+        const newsImage = newsItem.image_url;
+        const newsId = newsItem._id;
+
+        const newsTotalViews = newsItem.total_view ? newsItem.total_view : "0";
+
+        const newNewsCard = document.createElement('div');
+        newNewsCard.classList.add('col');
+
+        newNewsCard.innerHTML = `<div class="card h-100">
+                <img src="${newsImage}" class="card-img-top" alt="${newsTitle} Image">
+                <div class="card-body">
+                    <h5 class="card-title">${newsTitle}</h5>
+                    <div class="row justify-content-center align-items-center mt-3">
+                    <div class="col-md-6 col-6">
+                        <div class="d-flex justify-content-md-start align-items-center">
+                            <i class="fa-solid fa-eye text-muted"></i>
+                            <p class="mb-0 ms-2 text-muted" id="newsTotalViews">${newsTotalViews} Views</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-6">
+                        <div class="d-flex justify-content-md-start align-items-center">
+                            <a class="learn-more-anchor" onclick="getNewsDetailedInformationById('${newsId}')" data-bs-toggle="modal" data-bs-target="#newsDetailedInformationModal">
+                                <span class="text-muted me-2">Learn More</span>
+                                <i class="fa-solid fa-arrow-right text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+        sidebarNewsCards.appendChild(newNewsCard);
+    });
 }
 
 const homePageContent = () => {
@@ -497,12 +554,14 @@ const homePageContent = () => {
 
         getSliderContent(true);
         getSidebarNewsContent(true);
+        getLatestNews(true);
 
     } else {
         document.getElementById("categoryNewsSection").style.display = "block";
         document.getElementById("homePageSection").style.display = "none";
         getSliderContent(false);
         getSidebarNewsContent(false);
+        getLatestNews(false);
     }
 }
 
