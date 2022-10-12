@@ -87,7 +87,7 @@ const getAllNewsByCategoryId = async(categoryId, categoryName = '', sortBy = 'de
             newsDataFoundMessage(true, newsFoundMessage);
         } else {
             // Error data not found...
-            newsDataFoundMessage(false);
+            newsDataFoundMessage(true, 'No news data founds!!!');
             dataNotFoundMessageSection(true);
             websitePreloader(false);
         }
