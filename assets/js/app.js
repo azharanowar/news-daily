@@ -571,6 +571,7 @@ const homePageContent = () => {
     if (isHomePageNavMenuActive) {
 
         document.getElementById("categoryNewsSection").style.display = "none";
+        document.getElementById("blogContentSection").style.display = "none";
         document.getElementById("homePageSection").style.display = "block";
 
         getSliderContent(true);
